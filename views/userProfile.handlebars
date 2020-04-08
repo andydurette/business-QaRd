@@ -1,0 +1,143 @@
+<link href="/assets/css/style.css" rel="stylesheet">
+
+<div class="sticky-footer-wrapper"></div>
+<header>
+  <nav>
+    <a href="/" id="logo">QaRds</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <span>|</span>
+      <li><a id='logOut'>Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="userDisplay">
+  <!-- Form Field -->
+
+ <h1>Welcome <span id='headingUserName'>{{username}}</span></h1>
+<form action="javascript:void(0);" id="regForm" method="POST">
+
+<!-- One "tab" for each step in the form: -->
+<div class="tab">Name:
+  <p><input class="inputPadding" value="{{firstname}}" id="first_name" name="first_name" placeholder="First name..."></p>
+  <p id="first_name_error">*Please add your first name</p>
+  <p><input class="inputPadding" value="{{lastname}}" id="last_name" name="last_name" placeholder="Last name..."></p>
+  <p id="last_name_error">*Please add your last name</p>
+</div>
+
+<div class="tab">Contact Info:
+  <p><input class="inputPadding" value="{{email}}" id="e_mail" name="e_mail" placeholder="E-mail..." ></p>
+  <p id="e_mail_error">*Please add your email</p>
+  <p><input class="inputPadding" value="{{phone}}" id="phone" name="phone" placeholder="Phone..." ></p>
+  <p id="phone_error">*Please add your phone number</p>
+</div>
+
+<div class="tab">Work Details:
+  <p><input class="inputPadding" value="{{company}}" id="company" name="company" placeholder="Company..."></p>
+  <p id="company_error">*Please add your company or school</p>
+  <p><input class="inputPadding" value="{{role}}" id="role" name="role" placeholder="Role..."></p>
+  <p id="role_error">*Please add your role</p>
+</div>
+
+<div class="tab">Media:
+  <p><input class="inputPadding" value="{{portfolio}}" id="portfolio" name="portfolio" placeholder="Portfolio"></p>
+  <p><input class="inputPadding" value="{{linkedin}}" id="linked_in" name="linked_in" placeholder="LinkedIn"></p>
+  <p><input class="inputPadding" value="{{instagram}}" id="instagram" name="instagram" placeholder="Instagram"></p>
+</div>
+<p class="disclaimer">* Note: you need to include http:// for links to work</p>
+
+<p>Select a style:</p>
+
+<div class="radio">
+  <label for="styleCarbon">Carbon</label>
+  <img src="/assets/images/carbon-preview.jpg" alt="Carbon preview">
+  <input type="radio" id="style1" name="userStyle" value="carbon" {{carbonCard}} >
+</div>
+<div class="radio">
+  <label for="style2">Trendy</label>
+  <img src="/assets/images/trendy-preview.jpg" alt="Trendy preview">
+  <input type="radio" id="style2" name="userStyle" value="trendy" {{trendyCard}}>  
+</div>
+<div class="radio"> 
+  <label for="style4">Geometry</label>
+  <img src="/assets/images/geo-preview.jpg" alt="Geometry preview">
+  <input type="radio" id="style3" name="userStyle" value="geometry" {{geometryCard}}>
+</div>
+<div class="radio">
+  <label for="style4">Standard</label>
+  <img src="/assets/images/standard-preview.jpg" alt="Standard preview">
+  <input type="radio" id="style4" name="userStyle" value="standard" {{standardCard}}>
+</div>
+
+<div id="buttons">
+
+<button id="userSubmit" type="submit">Save</button>
+<button id="qrGenerate" class="{{diactivated}}" >Generate QR</button>
+<button id="qrPreview" class="{{diactivated}}" >Preview QaRd</button>
+<button id="deleteButton" >Delete Account</button>
+
+</form>
+
+
+</section>
+</div>
+
+<footer>
+  <p>copyright ©<span id="year"></span></p>
+</footer>
+
+
+<!-- Modal -->
+  {{#if url}}
+    {{>link}}
+  {{/if}} 
+
+ <!-- Modal End -->
+
+<script>
+
+  const deleteAccount =()=>{
+    fetch("/api/delete",{
+          method:'DELETE'
+    })
+    .then(res=>{
+      if (res.status && (res.status === 200)) {
+        window.location.reload();
+      }
+    })
+    .catch(err=>console.log(err))
+  }
+
+
+let decodedJson = decodeURIComponent("{{url}}");
+let urlToBe = "http://" + decodedJson;
+
+  const logOut = (e) => {
+    fetch( '/logout')
+    .then(res=> window.location.href = window.location.origin )
+    .catch(err=>console.log(err));
+  }
+  
+  document.getElementById("deleteButton").addEventListener("click",deleteAccount);
+
+  document.getElementById('logOut').addEventListener('click',logOut);
+
+  document.getElementById('qrGenerate').addEventListener("click", () => {
+    document.getElementById("modal").classList.remove("hide");
+    document.getElementById("modalOverlay").classList.remove("hide");
+  });
+
+    document.getElementById('close-button').addEventListener("click", () => {
+      document.getElementById("modal").classList.add("hide");
+      document.getElementById("modalOverlay").classList.add("hide");
+  });
+
+
+ document.getElementById('qrPreview').addEventListener("click", () => {
+  let win = window.open(urlToBe, '_blank');
+  win.focus();
+ });
+
+
+</script>

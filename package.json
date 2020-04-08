@@ -1,0 +1,57 @@
+{
+  "name": "business-qard",
+  "version": "1.0.0",
+  "description": "Web app that generates digital business cards",
+  "main": "server.js",
+  "engines": {
+    "node": "12.9.1"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "scripts": {
+    "test": "eslint . --ext .js",
+    "fix": "eslint . --fix --ext .js",
+    "start": "node server.js",
+    "start-dev": "nodemon server.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jondam1985/business-QaRd.git"
+  },
+  "keywords": [
+    "QR",
+    "Code",
+    "business",
+    "card",
+    "digital",
+    "presentation"
+  ],
+  "author": "Group 3",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jondam1985/business-QaRd/issues"
+  },
+  "homepage": "https://github.com/jondam1985/business-QaRd#readme",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "jquery": "^3.4.1",
+    "mocha": "^7.0.0",
+    "mysql2": "^2.1.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2"
+  }
+}

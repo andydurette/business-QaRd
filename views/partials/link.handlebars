@@ -1,0 +1,45 @@
+<div class="modalOverlay hide" id="modalOverlay"></div>
+<div class="modal hide" id="modal">
+  <button class="close-button" id="close-button">X</button>
+  <div class="modal-guts">
+    <section id="options">
+      <div class="questionBox">
+        <iframe width="300" height="300"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{url}}"></iframe>
+        <button id='share'>Share</button>
+    </section>
+  </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const shareBtn = document.getElementById("share");
+
+  let decodedUrl = decodeURIComponent("{{url}}");
+  let sharedUrl = `https://${decodedUrl}`;
+
+
+  shareBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (navigator.share) {
+      axios.post(`https://api.shrtco.de/v2/shorten?url=${sharedUrl}`)
+      .then(function(response) {
+        let shortUrl = response.data.result.full_short_link;
+      navigator.share({
+        title: "Business QaRd",
+        text: "Hello, here is my business QaRd!",
+        url: shortUrl
+      })
+        .then(console.log("Shared!"));
+    })
+    }
+    else {
+      axios.post(`https://api.shrtco.de/v2/shorten?url=${sharedUrl}`)
+      .then(function(response) {
+              window.alert(`Could not be shared ${response.data.result.full_short_link}`);
+      console.log(sharedUrl);
+
+    })
+    }
+  });
+</script>
