@@ -10,5 +10,5 @@ deploy:
     secure: C6LQ4r7nM9AGlObjx4BT1/re0/DDnDoXH74oQ83H3jjJzv66tIpz/vWWVOT8dP53n82uT49pv9Of+aQgwxUw21GXU6Ccl6rtBuUGRt9e1B3ks3+gIJLLD+B2NUkcFdSwTnOZiLspNjz5zqsHjsT+q9S4nxiGERTh44cCkSjyD2xlfTVejLktRyq6hSJvK/vOEQaq5uITklj/YxkmwPHyeNzxOV4opDpilwquuJsCaTndOMWKD7+XUXSe7p2RK2smI7Tuz22KIv6Zp9cXNomSY0+60QnhH+yoahT/pT9VwUOe2oyzCroD2/GD8xWZiGSKUm9Ap19I4Fz1J72O3wvvIsUMcrM9Gtk1CHmTN0fo/39vEBkmPEMmKvvJVkhJjXavdW7Ic9TAD4sfmBCjOtz+mHPHyCH70NgoaGaxYQVlqkt7nkK6RXiLahkJRT+SagIl+Cb5Qxdp+67H2GjAHZGQC4sqMOapUykz7sqGxgJnXKLY6kt/+EEXqrZ8fU1KNeLDHOqgEcvDM5knctrwhrP4OwbtgixNVOa/Pvlm/bLEFgLrgv7Xpa/rfcwLaW8vcLBqIHQmCTx8BDkExJOH/NghV959MkEzBqYDW7yNmrAvZVxAklPyktajBqyjEuu45K6PG1tNE7/JWdaQI+8uoGQM2jgnP9jbble8YSMs3gm1ssk=
   app: business-qard
   on:
-    repo: jondam1985/business-QaRd
+    repo: andydurette/business-QaRd
     branch: master
